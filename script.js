@@ -1,3 +1,5 @@
+'use strict';
+
 let title = 'lesson02';
 let screens = 'Простые, Сложные, Интерактивные';
 let screenPrice = 28;
@@ -12,8 +14,8 @@ console.log(typeof adaptive);
 
 console.log(screens.length);
 
-console.log("Стоимость верстки экранов " + screenPrice + " рублей/долларов/гривен/юани");
-console.log("Стоимость разработки сайта " + fullPrice + " рублей/долларов/гривен/юани");
+console.log("Стоимость верстки экранов " + screenPrice + " гривен");
+console.log("Стоимость разработки сайта " + fullPrice + " гривен");
 
 console.log(screens.toLowerCase().split(","));
 
