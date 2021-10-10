@@ -1,27 +1,52 @@
 'use strict';
-const rollback = 14;
-const title = '   КаЛьКулятор Вёрстки';
 
-const screens = prompt("Какие типы экранов нужно разработать?");
-const screenPrice = +prompt("Сколько будет стоить данная работа?");
-const adaptive = confirm("Нужен ли адаптив на сайте?");
-
-const service1 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice1 = prompt("Сколько это будет стоить?");
-const service2 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice2 = prompt("Сколько это будет стоить?");
-
-let fullPrice = parseInt(screenPrice) + parseInt(servicePrice1) + parseInt(servicePrice2);
-const servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback/100)));
+let title = '   КаЛьКулятор Вёрстки';
+let screens;
+let screenPrice;
+let adaptive;
+const rollback = 10;
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
+let service1;
+let service2;
 
 
-const allServicePrices = function getAllServicePrices() {
-  return parseInt(servicePrice1) + parseInt(servicePrice2);
+const isNumber = function(num) {
+  return !isNaN(parseFloat(num)) && isFinite(num) // проверка на число
+  }
+
+const asking = function() {
+   screens = prompt("Какие типы экранов нужно разработать?");
+  do {
+     screenPrice = prompt("Сколько будет стоить данная работа?");
+  }  while(!isNumber(screenPrice))
+
+   adaptive = confirm("Нужен ли адаптив на сайте?");
+  }
+
+
+const getAllServicePrices = function() {
+  let sum = 0;
+  for(let i=0, j; i<2; i++){
+
+    if(i===0){
+      service1 = prompt("Какой дополнительный тип услуги нужен?", "Калькулятор")
+    }
+    else if(i===1){
+      service2 = prompt("Какой дополнительный тип услуги нужен?", "Вёрстки")
+    }
+    do {
+      j = prompt('Сколько это будет стоить?');
+    }
+    while (!isNumber(j))
+    sum += +j;
+  }
+  return sum;
 }
 
-fullPrice = getFullPrice();
-function getFullPrice(a, b) {
-  return a+b;
+function getFullPrice() {
+  return  parseInt(screenPrice) +  parseInt(allServicePrices);
 }
 
 function getTitle() {
@@ -33,8 +58,8 @@ function getTitle() {
     .toLowerCase();
 }
 
-const ervicePercentPrice = function getServicePercentPrices() {
-  return (Math.ceil(getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)) - (getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)) * (rollback/100))));
+const getServicePercentPrices = function() {
+  return (fullPrice - (fullPrice * (rollback/100)));
 }
 
 const screenArray = function Array() {
@@ -59,26 +84,16 @@ const getRollbackMessage = function(price) {
 }
 
 
+asking()
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice();
+servicePercentPrice = getServicePercentPrices();
+title = getTitle();
+
 showTypeOf(title);
-showTypeOf(fullPrice);
+showTypeOf(screenPrice);
 showTypeOf(adaptive);
-console.log(screens);
+
 console.log(getRollbackMessage(fullPrice));
-console.log(ervicePercentPrice());
-
-
-/*
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-console.log(screens.length);
-console.log("Стоимость верстки экранов " + screenPrice + " гривен");
-console.log("Стоимость разработки сайта " + fullPrice + " гривен");
-console.log(screens.toLowerCase().split(","));
-console.log(fullPrice * (rollback/100));
-
-console.log(allServicePrices());
-console.log(getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)));
-console.log(getTitle());
-console.log(ervicePercentPrice());
-console.log(screenArray());*/
+console.log(servicePercentPrice);
+console.log("allServicePrices", allServicePrices);
