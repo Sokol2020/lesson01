@@ -1,6 +1,6 @@
 'use strict';
 
-let title = '   КаЛьКулятор Вёрстки';
+let title;
 let screens;
 let screenPrice;
 let adaptive;
@@ -17,6 +17,10 @@ const isNumber = function(num) {
   }
 
 const asking = function() {
+
+  while (!(title = prompt('Как называется проект?'))){
+    alert('Поле не может быть пустым!');
+  }
    screens = prompt("Какие типы экранов нужно разработать?");
   do {
      screenPrice = prompt("Сколько будет стоить данная работа?");
@@ -28,25 +32,26 @@ const asking = function() {
 
 const getAllServicePrices = function() {
   let sum = 0;
-  for(let i=0, j; i<2; i++){
+  for(let i=0, priceForOne; i<2; i++){
 
     if(i===0){
-      service1 = prompt("Какой дополнительный тип услуги нужен?", "Калькулятор")
+      service1 = prompt("Какой дополнительный тип услуги нужен?")
     }
     else if(i===1){
-      service2 = prompt("Какой дополнительный тип услуги нужен?", "Вёрстки")
+      service2 = prompt("Какой дополнительный тип услуги нужен?")
     }
     do {
-      j = prompt('Сколько это будет стоить?');
+      priceForOne = prompt('Сколько это будет стоить?');
     }
-    while (!isNumber(j))
-    sum += +j;
+    while (!isNumber(priceForOne))
+    sum += +priceForOne;
   }
   return sum;
 }
 
 function getFullPrice() {
-  return  parseInt(screenPrice) +  parseInt(allServicePrices);
+  screenPrice = Number(screenPrice)
+  return  parseInt(screenPrice) +  allServicePrices;
 }
 
 function getTitle() {
