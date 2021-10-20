@@ -1,31 +1,62 @@
-'use strict';
-const rollback = 14;
-const title = '   КаЛьКулятор Вёрстки';
+'use strict'
 
-const screens = prompt("Какие типы экранов нужно разработать?");
-const screenPrice = +prompt("Сколько будет стоить данная работа?");
-const adaptive = confirm("Нужен ли адаптив на сайте?");
+const appData = {
+  title: '',
+  screens: '',
+  screenPrice: 0,
+  adaptive: true,
+  rollback: 10,
+  allServicePrices: 0,
+  fullPrice: 0,
+  servicePercentPrice: 0,
+  service1: '',
+  service2: '',
+  asking: function() {
 
-const service1 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice1 = prompt("Сколько это будет стоить?");
-const service2 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice2 = prompt("Сколько это будет стоить?");
+    while (!(appData.title = prompt('Как называется проект?'))){
+      alert('Поле не может быть пустым!');
+    }
+    appData.screens = prompt("Какие типы экранов нужно разработать?");
+    do {
+      appData.screenPrice = prompt("Сколько будет стоить данная работа?");
+    }  while(!isNumber(appData.screenPrice))
+  
+    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
+    }
+};
 
-let fullPrice = parseInt(screenPrice) + parseInt(servicePrice1) + parseInt(servicePrice2);
-const servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback/100)));
+
+const isNumber = function(num) {
+  return !isNaN(parseFloat(num)) && isFinite(num) // проверка на число
+  }
 
 
-const allServicePrices = function getAllServicePrices() {
-  return parseInt(servicePrice1) + parseInt(servicePrice2);
+const getAllServicePrices = function() {
+  let sum = 0;
+  for(let i=0, priceForOne; i<2; i++){
+
+    if(i===0){
+      appData.service1 = prompt("Какой дополнительный тип услуги нужен?")
+    }
+    else if(i===1){
+      appData.service2 = prompt("Какой дополнительный тип услуги нужен?")
+    }
+    do {
+      priceForOne = prompt('Сколько это будет стоить?');
+    }
+    while (!isNumber(priceForOne))
+    sum += +priceForOne;
+  }
+  return sum;
 }
 
-fullPrice = getFullPrice();
-function getFullPrice(a, b) {
-  return a+b;
+function getFullPrice() {
+  appData.screenPrice = Number(appData.screenPrice)
+  return  parseInt(appData.screenPrice) +  appData.allServicePrices;
 }
 
 function getTitle() {
-  let cutTitle = title.trim();
+  let cutTitle = appData.title.trim();
   return cutTitle
     .charAt(0)
     .toUpperCase() + cutTitle
@@ -33,18 +64,14 @@ function getTitle() {
     .toLowerCase();
 }
 
-const ervicePercentPrice = function getServicePercentPrices() {
-  return (Math.ceil(getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)) - (getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)) * (rollback/100))));
+const getServicePercentPrices = function() {
+  return (appData.fullPrice - (appData.fullPrice * (appData.rollback/100)));
 }
 
 const screenArray = function Array() {
-  return screens.split();
+  return appData.screens.split();
 }
 
-const showTypeOf = function (variable) {
-  console.log(variable, typeof variable);
-
-}
 
 const getRollbackMessage = function(price) {
   if(price > 30000){
@@ -59,26 +86,11 @@ const getRollbackMessage = function(price) {
 }
 
 
-showTypeOf(title);
-showTypeOf(fullPrice);
-showTypeOf(adaptive);
-console.log(screens);
-console.log(getRollbackMessage(fullPrice));
-console.log(ervicePercentPrice());
+appData.asking()
+appData.allServicePrices = getAllServicePrices();
+appData.fullPrice = getFullPrice();
+appData.servicePercentPrice = getServicePercentPrices();
+appData.title = getTitle();
 
-
-/*
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-console.log(screens.length);
-console.log("Стоимость верстки экранов " + screenPrice + " гривен");
-console.log("Стоимость разработки сайта " + fullPrice + " гривен");
-console.log(screens.toLowerCase().split(","));
-console.log(fullPrice * (rollback/100));
-
-console.log(allServicePrices());
-console.log(getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)));
-console.log(getTitle());
-console.log(ervicePercentPrice());
-console.log(screenArray());*/
+console.log(appData.fullPrice);
+console.log(appData.servicePercentPrice);
