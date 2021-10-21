@@ -1,5 +1,61 @@
 "use strict"; //Строгий режим
 
+const title = document.getElementsByTagName("h1");
+const btnStart = document.getElementsByClassName("handler_btn");
+const btnReset = document.getElementsByClassName("handler_btn");
+const btnPlus = document.querySelector(".screen-btn");
+const otherItems = document.querySelectorAll(".other-items");
+const percent = document.querySelectorAll(".percent");
+const number = document.querySelectorAll(".number");
+const range = document.querySelector("div.rollback input");
+const span = document.querySelector("div.rollback span");
+const totalInput = document.getElementsByClassName("total-input");
+let screenQuery = document.querySelectorAll(".screen");
+
+let index;
+for (index = 0; index < totalInput.length; ++index) {
+  console.log(totalInput[index]);
+}
+
+console.log(title.title.textContent);
+console.log(btnStart[0]);
+console.log(btnReset[1]);
+console.log(btnPlus);
+console.log(otherItems);
+console.log(percent);
+console.log(number);
+console.log(range);
+console.log(span);
+console.log(screenQuery);
+
+
+
+
+
+
+/*
+
+
+let index;
+for (index = 0; index < totalInput.length; ++index) {
+  console.log(totalInput[index]);
+}
+
+console.log(title.title.textContent);
+console.log(btnStart[0]);
+console.log(btnReset[1]);
+console.log(btnPlus);
+console.log(otherItems);
+console.log(percent);
+console.log(number);
+console.log(range);
+console.log(span);
+console.log(screenQuery);
+
+*/
+
+
+
 const appData = {
   title: "",
   screens: [],
@@ -109,7 +165,7 @@ const appData = {
     console.log(appData.screens);
 
     for (let key in appData) {
-      console.log(key + ": " + appData[key]);
+     console.log(key + ": " + appData[key]);
     }
   },
 };
