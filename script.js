@@ -33,14 +33,13 @@ const appData = {
       appData.title = prompt("Как называется ваш проект?", "JS21");
     } while (appData.isString(appData.title));
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 1; i++) {
       let name;
       let price = 0;
 
       do {
         name = prompt("Какие типы экранов нужно разработать?");
       } while (appData.isString(name));
-
       do {
         price = prompt("Сколько будет стоить данная работа?");
       } while (!appData.isNumber(price));
