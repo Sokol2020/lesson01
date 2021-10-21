@@ -29,33 +29,6 @@ console.log(span);
 console.log(screenQuery);
 
 
-
-
-
-
-/*
-
-
-let index;
-for (index = 0; index < totalInput.length; ++index) {
-  console.log(totalInput[index]);
-}
-
-console.log(title.title.textContent);
-console.log(btnStart[0]);
-console.log(btnReset[1]);
-console.log(btnPlus);
-console.log(otherItems);
-console.log(percent);
-console.log(number);
-console.log(range);
-console.log(span);
-console.log(screenQuery);
-
-*/
-
-
-
 const appData = {
   title: "",
   screens: [],
