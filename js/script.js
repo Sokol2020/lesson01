@@ -11,11 +11,8 @@ const range = document.querySelector("div.rollback input");
 const span = document.querySelector("div.rollback span");
 const totalInput = document.getElementsByClassName("total-input");
 let screenQuery = document.querySelectorAll(".screen");
-
 let index;
-for (index = 0; index < totalInput.length; ++index) {
-  console.log(totalInput[index]);
-}
+
 
 console.log(title.title.textContent);
 console.log(btnStart[0]);
@@ -27,6 +24,19 @@ console.log(number);
 console.log(range);
 console.log(span);
 console.log(screenQuery);
+
+const element = document.getElementsByClassName(' total-input ')[index];
+const element1 = document.getElementsByClassName(' total-input ')[0];
+const element2 = document.getElementsByClassName(' total-input ')[1];
+const element3 = document.getElementsByClassName(' total-input ')[2];
+const element4 = document.getElementsByClassName(' total-input ')[3];
+const element5 = document.getElementsByClassName(' total-input ')[4];
+for (index = 0; index < totalInput.length; ++index) {
+  console.log(totalInput[index]);
+}
+/*for (index = 0; index < totalInput.length; ++index) {
+  console.log(totalInput[index]);
+}*/
 
 
 const appData = {
@@ -134,7 +144,6 @@ const appData = {
   logger: function () {
     console.log(appData.fullPrice);
     console.log(appData.servicePercentPrice);
-    console.log(appData);
     console.log(appData.screens);
 
     for (let key in appData) {
