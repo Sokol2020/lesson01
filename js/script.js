@@ -1,149 +1,52 @@
-"use strict"; //Строгий режим
-let index;
+"use strict";
 
-const title = document.getElementsByTagName("h1");
-const btnStart = document.getElementsByClassName("handler_btn");
-const btnReset = document.getElementsByClassName("handler_btn");
-const btnPlus = document.querySelector(".screen-btn");
-const otherItems = document.querySelectorAll(".other-items");
-const percent = document.querySelectorAll(".percent");
-const number = document.querySelectorAll(".number");
-const range = document.querySelector("div.rollback input");
-const span = document.querySelector("div.rollback span");
-const totalInput = document.getElementsByClassName("total-input");
-const element = document.getElementsByClassName(' total-input ')[index];
-const element1 = document.getElementsByClassName(' total-input ')[0];
-const element2 = document.getElementsByClassName(' total-input ')[1];
-const element3 = document.getElementsByClassName(' total-input ')[2];
-const element4 = document.getElementsByClassName(' total-input ')[3];
-const element5 = document.getElementsByClassName(' total-input ')[4];
-let screenQuery = document.querySelectorAll(".screen");
+const book = document.querySelectorAll(".book");
+const image = document.querySelector("body");
+const titleBook = document.querySelectorAll("div.book a")[4];
+const deleteAdb = document.querySelector(".adv");
+const bookTwoChapters = document
+  .querySelectorAll("div.book ul")[0]
+  .querySelectorAll("li");
 
+const bookFiveChapters = document
+  .querySelectorAll("div.book ul")[5]
+  .querySelectorAll("li");
 
-const appData = {
-  title: "",
-  screens: [],
-  screenPrice: 0,
-  adaptive: true,
-  rollback: 26,
-  allServicePrices: 0,
-  fullPrice: 0,
-  servicePercentPrice: 0,
-  services: {},
-  start: function () {
-    appData.asking();
-    appData.addPrices();
-    appData.getFullPrice();
-    appData.getServicePercentPrices();
-    appData.getTitle();
+const bookSixChapters = document
+  .querySelectorAll("div.book ul")[2]
+  .querySelectorAll("li");
 
-    this.logger();
-  },
+const fixBooks = () => {
+  book[0].before(book[1]);
+  book[2].before(book[4]);
+  book[2].before(book[3]);
+  book[2].before(book[5]);
 
-  isNumber: function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num);
-  },
+  image.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 
-  isString: function (str) {
-    return str.length === 0 || str == Number.parseFloat(str, Infinity);
-  },
+  titleBook.innerHTML = "Книга 3. this и Прототипы Объектов";
 
-  asking: function () {
-    do {
-      appData.title = prompt("Как называется ваш проект?", "JS21");
-    } while (appData.isString(appData.title));
-
-    for (let i = 0; i < 1; i++) {
-      let name;
-      let price = 0;
-
-      do {
-        name = prompt("Какие типы экранов нужно разработать?");
-      } while (appData.isString(name));
-      do {
-        price = prompt("Сколько будет стоить данная работа?");
-      } while (!appData.isNumber(price));
-
-      appData.screens.push({ id: i, name: name, price: price });
-    }
-
-    for (let i = 0; i < 2; i++) {
-      let name;
-      let price = 0;
-
-      do {
-        name = prompt("Какой дополнительный тип услуги нужен?");
-      } while (appData.isString(name));
-
-      do {
-        price = prompt("Сколько это будет стоить?");
-      } while (!appData.isNumber(price));
-
-      appData.services[name] = +price;
-    }
-
-    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
-  },
-
-  addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
-    }
-
-    for (let key in appData.services) {
-      appData.allServicePrices += appData.services[key];
-    }
-  },
-
-  getFullPrice: function () {
-    appData.fullPrice = +appData.screenPrice + appData.allServicePrices; //Расчет полной суммы
-  },
-  getTitle: function () {
-    appData.title =
-      appData.title.trim()[0].toUpperCase() +
-      appData.title.trim().substr(1).toLowerCase(); //Заглавная буква с первого знака
-  },
-  getServicePercentPrices: function () {
-    appData.servicePercentPrice = Math.ceil(
-      appData.fullPrice - appData.fullPrice * (appData.rollback / 100)
-    ); // Функция возвращает стоимость за вычетом процента отката
-  },
-  getRollbackMessage: (price) => {
-    switch (true) {
-      case price >= 30000: // Если итоговая стоимость больше 30000, то дарим скидку 10%
-        return "Дарим скидку 10%";
-      case price >= 15000: // Если итоговая стоимость больше 15000, то дарим скидку 5%
-        return "Дарим скидку 5%";
-      case price >= 0: // Если итоговая стоимость больше 0, то скидка не предусмотрена
-        return "Скидка не предусмотрена!";
-
-      default:
-      case price <= 0: // Если итоговая стоимость меньше 0, то возвращаем ошибку
-        return "Что-то пошло не так Т_Т";
-    }
-  },
-  logger: function () {
-    console.log(appData.fullPrice);
-    console.log(appData.servicePercentPrice);
-    console.log(appData.screens);
-
-    for (let key in appData) {
-     console.log(key + ": " + appData[key]);
-    }
-  },
+  deleteAdb.remove();
 };
-appData.start();
 
-console.log(title.title.textContent);
-console.log(btnStart[0]);
-console.log(btnReset[1]);
-console.log(btnPlus);
-console.log(otherItems);
-console.log(percent);
-console.log(number);
-console.log(range);
-console.log(span);
-console.log(screenQuery);
-for (index = 0; index < totalInput.length; ++index) {
-  console.log(totalInput[index]);
-}
+const sortChapters = () => {
+  bookTwoChapters[9].after(bookTwoChapters[2]);
+  bookTwoChapters[3].after(bookTwoChapters[6]);
+  bookTwoChapters[4].before(bookTwoChapters[8]);
+
+  bookFiveChapters[1].after(bookFiveChapters[9]);
+  bookFiveChapters[4].before(bookFiveChapters[3]);
+  bookFiveChapters[4].after(bookFiveChapters[2]);
+  bookFiveChapters[8].before(bookFiveChapters[5]);
+};
+
+const addChapter = () => {
+  bookSixChapters[8].insertAdjacentHTML(
+    "afterend",
+    "<li>Глава 8: За пределами ES6</li>"
+  );
+};
+
+fixBooks();
+sortChapters();
+addChapter();
