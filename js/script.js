@@ -35,10 +35,10 @@ const appData = {
     this.addTitle();
     this.checkInputs();
 
-    btnStart.addEventListener("click", this.start.bind(appData));
-    btnReset.addEventListener("click", this.reset.bind(appData));
+    btnStart.addEventListener("click", this.start.bind(this));
+    btnReset.addEventListener("click", this.reset.bind(this));
 
-    btnPlus.addEventListener("click", this.addScreenBlock.bind(appData));
+    btnPlus.addEventListener("click", this.addScreenBlock.bind(this));
 
     inputRange.addEventListener("input", (event) => {
       inputRangeValue.textContent = event.target.value + "%";
