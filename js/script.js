@@ -11,25 +11,28 @@ const DomElement = function (selector, height, width, bg, fontSize) {
   this.fontSize = fontSize + "px";
 };
 
-DomElement.prototype.creater = function () {
-  if (this.selector[0] === ".") {
-    elem = document.createElement("div");
-    elem.classList.add(this.selector.slice(1));
-    elem.style.display = "flex";
-    elem.style.justifyContent = "center";
-    elem.style.alignItems = "center";
-    elem.style.margin = "30px";
-    elem.style.textTransform = "uppercase";
-  } else if (this.selector[0] === "#") {
-    elem = document.createElement("p");
-    elem.id = this.selector.slice(1);
-    elem.style.display = "flex";
-    elem.style.justifyContent = "center";
-    elem.style.alignItems = "center";
-    elem.style.margin = "30px";
-    elem.style.textTransform = "lowercase";
-  }
-
+DomElement.prototype.creater = function () 
+{
+  const a = (this.selector[0] === ".") ? (
+    elem = document.createElement("div"),
+      elem.classList.add(this.selector.slice(1)),
+      elem.style.cssText = `
+      text-transform: uppercase;
+      `
+  ) : (
+    elem = document.createElement("p"),
+      elem.id = this.selector.slice(1),
+      elem.style.cssText = `
+      text-transform: lowercase;
+  `
+  )
+  elem.style.cssText = `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    `;
+  
   elem.style.height = this.height;
   elem.style.width = this.width;
   elem.style.background = this.bg;
