@@ -1,5 +1,10 @@
 import timer from './modules/timer'
-import two from './modules/two'
+import menu from './modules/menu'
+import modal from './modules/modal'
+//import smoothScroll from './modules/smoothScroll'
+
 
 timer(`22 november 2021`)
-two()
+menu()
+modal()
+//smoothScroll()
