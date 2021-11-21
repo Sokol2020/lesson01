@@ -1,45 +1,18 @@
-//const linksHead = document.querySelectorAll('.menu-list__link')
-const menuItems = menu.querySelectorAll('ul>li>a')
-const mainScroll = document.querySelector('.main__scroll')
-const newArr = [...menuItems, mainScroll]
+const smoothScroll = () => {
+  const anchors = document.querySelectorAll('a[href*="#"]')
 
-
-
-newArr.forEach(link => {  
-  link.addEventListener('click', (event) =>{
-    event.preventDefault()
-
-    const ID = event.target.getAttribute('href').substr(1)
-//плавная прокрутка при нажатии на раздел
-    document.getElementById(ID).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+  for (let anchor of anchors) {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      
+      const blockID = anchor.getAttribute('href').substr(1)
+      
+      document.getElementById(blockID).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
     })
-  })
-})
-
-
-
-
-
-
-/*
-newArr.forEach(link => {  
-  link.addEventListener('click', (event) =>{
-    event.preventDefault()
-
-    const ID = event.target.getAttribute('href').substr(1)
-//плавная прокрутка при нажатии на раздел
-    document.getElementById(ID).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-  })
-})
-*/
-
-
-
-
+  }
+}
 
 export default smoothScroll

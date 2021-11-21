@@ -1,5 +1,4 @@
 const modal = () => {
-  console.dir(document);
   const modal = document.querySelector(".popup");
   const buttons = document.querySelectorAll(".popup-btn");
   const closeBtn = modal.querySelector(".popup-close");
