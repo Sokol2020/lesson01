@@ -23,7 +23,7 @@ const modal = () => {
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      if (window.outerWidth > 768) {
+      if (window.innerWidth > 768) {
         openModal();
       } else {
         modal.style.display = "block";
