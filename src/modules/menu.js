@@ -1,22 +1,22 @@
 const menu = () => {
-  const menuBtn = document.querySelector('.menu') //класс
-  const menu = document.querySelector('menu') //тег
-  const closeBtn = menu.querySelector('.close-btn')
-  const menuItems = menu.querySelectorAll('ul>li>a')
+  const menu = document.querySelector("menu");
+  const menuItems = menu.querySelectorAll("ul>li>a");
 
+  document.addEventListener("click", (e) => {
+    if (
+      e.target.closest(".menu") ||
+      e.target.classList.contains("close-btn") ||
+      e.target === menuItems[0] ||
+      e.target === menuItems[1] ||
+      e.target === menuItems[2] ||
+      e.target === menuItems[3] ||
+      e.target === menuItems[4]
+    ) {
+      menu.classList.toggle("active-menu");
+    } else if (!e.target.closest(".active-menu")) {
+      menu.classList.remove("active-menu");
+    }
+  });
+};
 
-  const handleMenu = () => {
-    menu.classList.toggle('active-menu')
-  }
-
-  menuBtn.addEventListener('click', handleMenu)
-
-  // Кнопка закрытия меню (крестик)
-  closeBtn.addEventListener('click', handleMenu)
-
-  //перебор каждого элемента списка "Меню" + обработчик с переходом по меню
-  menuItems.forEach(menuItem => menuItem.addEventListener('click', handleMenu))
-}
-
-
-export default menu
+export default menu;
