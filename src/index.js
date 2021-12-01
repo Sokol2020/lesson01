@@ -5,6 +5,7 @@ import smoothScroll from './modules/smoothScroll'
 import formsValidation from './modules/formsValidator'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
+import calc from './modules/calc'
 
 timer(`22 december 2021`)
 menu()
@@ -13,3 +14,4 @@ smoothScroll()
 formsValidation()
 tabs()
 slider()
+calc(100)
