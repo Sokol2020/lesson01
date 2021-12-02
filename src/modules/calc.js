@@ -15,32 +15,54 @@ const calc = (price = 100) => {
     let calcDayValue = 1
 
     if (calcCount.value > 1) {
-      calcCountValue = calcCountValue + (+calcCount.value / 10)
+      calcCountValue += +calcCount.value / 10
     }
 
     if(calcDay.value && calcDay.value < 5){
       calcDayValue = 2
-    } else if (calcDay.value && calcDay.value < 10) {
-      calcDayValue = 1.5
     }
+    if (calcDay.value && calcDay.value <= 10) {
+      calcDayValue = 1.5
+    } else {
+      calcDayValue = 1
+    } 
 
     if(calcType.value && calcSquare.value){
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+
+      const calcAnimate = (num, elem) => {
+        const step = 10;
+        let n = 0;
+        let t = Math.round(totalValue/((num*5)/step));
+        let interval = setInterval(() => {
+            n = n + step;
+            if(n == num) {
+                  clearInterval(interval);
+            }
+        total.innerHTML = n;
+        },
+      t);
+    };
+
+      calcAnimate(totalValue, 'total');
+      
     } else {
       totalValue = 0
     }
 
-    total.textContent = totalValue
-  }
+
+  total.textContent = totalValue
+}
+
 
   calcBlock.addEventListener('input', (e) => {
     if(e.target === calcCount ||
-      e.target === calcSquare || 
+      e.target === calcSquare ||  
       e.target === calcType ||
       e.target === calcDay){
       countCalc()
     }
-  })  
+  })
 }
 
-export default calc;
+export default calc
