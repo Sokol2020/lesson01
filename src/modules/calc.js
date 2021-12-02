@@ -18,6 +18,19 @@ const calc = (price = 100) => {
       calcCountValue += +calcCount.value / 10
     }
 
+
+    if(calcDay.value){
+      if(calcDay.value < 5){
+        calcDayValue = 2
+      } else if (calcDay.value <= 10) {
+        calcDayValue = 1.5
+      } else {
+        calcDayValue = 1
+      } 
+    }
+
+
+/*
     if(calcDay.value && calcDay.value < 5){
       calcDayValue = 2
     }
@@ -26,6 +39,14 @@ const calc = (price = 100) => {
     } else {
       calcDayValue = 1
     } 
+*/
+
+
+
+
+
+
+
 
     if(calcType.value && calcSquare.value){
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
