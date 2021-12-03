@@ -18,23 +18,21 @@ const calc = (price = 100) => {
       calcCountValue += +calcCount.value / 10
     }
 
-    if(calcDay.value){
-      if(calcDay.value < 5){
-        calcDayValue = 2
-      } else if (calcDay.value <= 10) {
-        calcDayValue = 1.5
-      } else {
-        calcDayValue = 1
-      } 
+    if(calcDay.value && calcDay.value < 5){
+      calcDayValue = 2
+    } else if (calcDay.value && calcDay.value < 10) {
+      calcDayValue = 1.5
+    } else {
+      calcDayValue = 1
     }
 
     if(calcType.value && calcSquare.value){
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
 
       const calcAnimate = (num, elem) => {
-        const step = 10;
+        const step = 25;
         let n = 0;
-        let t = Math.round(totalValue/((num*5)/step));
+        let t = Math.round(totalValue/((num*300)/step));
         let interval = setInterval(() => {
             n = n + step;
             if(n == num) {
