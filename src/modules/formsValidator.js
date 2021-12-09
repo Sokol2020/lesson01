@@ -14,27 +14,49 @@ const formsValidation = () => {
     yourName.addEventListener("input", (e) => {
       e.preventDefault();
 
-      e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
+      e.target.value = e.target.value.replace(/[^а-я ]/gi, "");
+      if (e.target.value.length >= 2) {
+        e.target.classList.add("success");
+      } else {
+        e.target.classList.remove("success");
+      }
     });
 
     yourEmail.addEventListener("input", (e) => {
+      const testEmail = /[\-\.\w]+@([\w]+\.)+[\w]+/gi;
       e.preventDefault();
       yourEmail.type = "text";
 
       e.target.value = e.target.value.replace(/[^a-z0-9_.~*'!@-]/giu, "");
+
+      if (testEmail.test(e.target.value)) {
+        e.target.classList.add("success");
+      } else {
+        e.target.classList.remove("success");
+      }
     });
 
     yourPhone.addEventListener("input", (e) => {
       e.preventDefault();
 
-      e.target.value = e.target.value.replace(/[^0-9\(\)\-\+\ ]/g, "");
+      e.target.value = e.target.value.replace(/[^0-9\+]/g, "");
+      if (e.target.value.length >= 11) {
+        e.target.classList.add("success");
+      } else {
+        e.target.classList.remove("success");
+      }
     });
   });
 
   yourMessage.addEventListener("input", (e) => {
     e.preventDefault();
 
-    e.target.value = e.target.value.replace(/[^а-я !?()-*%.,/]/gi, "");
+    e.target.value = e.target.value.replace(/[^а-я0-9 \,\.\?\!]/gi, "");
+    if (e.target.value) {
+      e.target.classList.add("success");
+    } else {
+      e.target.classList.remove("success");
+    }
   });
 
   calcBlock.addEventListener("input", (e) => {
