@@ -6,7 +6,6 @@ import formsValidation from './modules/formsValidator'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calc from './modules/calc'
-import XML from './modules/calc'
 import sendForm from './modules/sendForm'
 
 
@@ -18,5 +17,30 @@ formsValidation()
 tabs()
 slider()
 calc(100)
-XML()
-sendForm()
+sendForm({
+  formId: "form1",
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+sendForm({
+  formId: "form2",
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+sendForm({
+  formId: "form3",
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
