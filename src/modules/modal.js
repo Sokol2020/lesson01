@@ -1,29 +1,24 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modal = document.querySelector(".popup");
   const buttons = document.querySelectorAll(".popup-btn");
-
-  const openModal = () => {
-    modal.style.display = "block";
-    document.querySelector(".popup-content").animate(
-      [
-        {
-          opacity: 0,
-          transform: "translate3D(0, -300px, 0)",
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        duration: 500,
-      }
-    );
-  };
+  const popupContent = document.querySelector(".popup-content");
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (window.innerWidth > 768) {
-        openModal();
+        modal.style.display = "block";
+        animate({
+          duration: 500,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            popupContent.style.opacity = progress;
+            popupContent.style.top = 10 * progress + "%";
+          },
+        });
       } else {
         modal.style.display = "block";
       }
@@ -35,6 +30,7 @@ const modal = () => {
       modal.style.display = "none";
     }
   });
+
 };
 
 export default modal;
