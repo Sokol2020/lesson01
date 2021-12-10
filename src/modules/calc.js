@@ -28,24 +28,7 @@ const calc = (price = 100) => {
 
     if(calcType.value && calcSquare.value){
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-      const calcAnimate = (num) => {
-        const step = 125;
-        let n = 0;
-        let t = Math.round(totalValue/((num*300)/step));
-        let trunc = totalValue % step; // находим остаток
-        let interval = setInterval(() => {
-          n = n + step;
-          if(n > num) {
-            clearInterval(interval);
-            total.innerHTML = `${n - step + trunc}`;
-            //Если текущий n > num (такое может быть только если totalValue/step с остатком) - удаляем setInterval, а в качестве итогового значения записываем значение n на текущей итерации (которое больше n) - step (шаг итерации, возвращаемся на 1 шаг назад) + trunc (остаток)
-          } else {
-            total.innerHTML = n;
-          }
-        },t);
-      };
 
-    calcAnimate(totalValue);   
     } else {
       totalValue = 0
     }
